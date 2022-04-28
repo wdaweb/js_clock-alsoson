@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
+
+  <title>時鐘</title>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at center, #4188B3, #74ABC7, #cdf2f9);
+      font-family: 'Dancing Script';
+      font-size: 40px;
+      font-weight: 1000;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #clock {
+      width: 400px;
+      height: 400px;
+      background:
+        radial-gradient(circle at center, rgb(255, 198, 66), #fad7a1);
+      border-radius: 50%;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 3px solid #7C6966;
+      box-shadow: 5px 5px 5px rgb(124, 105, 102, 0.5);
+      z-index: 1;
+    }
+
+    #clock:hover {
+      background:
+        radial-gradient(circle at center, #E96D71, #fad7a1);
+      box-shadow: 8px 8px 8px rgb(124, 105, 102, 0.8);
+    }
+
+    #hour {
+      width: 30%;
+      height: 50px;
+      background: url(./時針.png) no-repeat right / contain;
+      position: absolute;
+      top: calc(50% - 29px);
+      left: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: left center;
+    }
+
+    #min {
+      width: 45%;
+      height: 100px;
+      position: absolute;
+      top: calc(50% - 55px);
+      left: calc(50% - 10px);
+      border-radius: 5px;
+      transform-origin: left center;
+      background: url(./分針.png) no-repeat right / contain;
+    }
+
+    #sec {
+      width: 40%;
+      height: 1px;
+      background: rgb(27, 30, 34);
+      position: absolute;
+      top: calc(50% - 5px);
+      left: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: left center;
+    }
+
+    .alice {
+      height: 80%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+
+    ul {
+      position: relative;
+    }
+
+    li {
+      text-decoration: none;
+      list-style: none;
+      color: rgb(0, 0, 51);
+      position: absolute;
+      text-shadow: 5px 5px 5px solid gray;
+    }
+
+    .center-top {
+      top: 1%;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    .bottom {
+      top: calc(99% - 50px);
+    }
+
+    .rabbit {
+      width: 120px;
+      position: absolute;
+      left: 50%;
+      top: 45%;
+      transform: translate(-50%, -45%);
+    }
+
+    .left-center {
+      top: 50%;
+      left: 1%;
+      transform: translate(0%, -50%);
+    }
+
+    .right {
+      left: calc(99% - 70px);
+    }
+
+    .thirty-leftone {
+      transform: rotate(-35deg);
+    }
+
+    .container1 {
+      width: 210px;
+      height: 320px;
+      /* background-color: rgba(0, 0, 0, 0.5); */
+      position: relative;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .heart {
+      width: 40px;
+      height: 40px;
+      background: url("./愛心.png") no-repeat center/ contain;
+    }
+
+    .heartbottom {
+      width: 40px;
+      height: 40px;
+      background: url("./黑桃.png") no-repeat center/ contain;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .heart::before {
+      content: "";
+      width: 40px;
+      height: 40px;
+      background: url("./愛心.png") no-repeat center/ contain;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    .heart::after {
+      content: "";
+      width: 40px;
+      height: 40px;
+      background: url("./黑桃.png") no-repeat center/ contain;
+      position: absolute;
+      right: 0;
+    }
+
+    .container2 {
+      width: 320px;
+      height: 195px;
+      /* background-color: rgba(0, 0, 222, 0.5); */
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .plum {
+      width: 40px;
+      height: 40px;
+      background: url("./梅花.png") no-repeat center/ contain;
+    }
+
+    .plumbottom {
+      width: 40px;
+      height: 40px;
+      background: url("./方塊.png") no-repeat center/ contain;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .plum::before {
+      content: "";
+      width: 40px;
+      height: 40px;
+      background: url("./梅花.png") no-repeat center/ contain;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    .plum::after {
+      content: "";
+      width: 40px;
+      height: 40px;
+      background: url("./方塊.png") no-repeat center/ contain;
+      position: absolute;
+      right: 0;
+    }
+
+
+    .box {
+      width: 100%;
+      height: 100%;
+    }
+
+    .flower {
+      width: 10%;
+      position: absolute;
+      top: 40%;
+      right: 20%;
+    }
+
+    .flowercopy1 {
+      width: 12%;
+      position: absolute;
+      top: 20%;
+      right: -5%;
+    }
+
+    .flowercopy2 {
+      width: 8%;
+      position: absolute;
+      top: 30%;
+      left: 10%;
+    }
+
+    .flowercopy3 {
+      width: 6%;
+      position: absolute;
+      top: 90%;
+      left: 40%;
+    }
+
+    .cup1 {
+      width: 10%;
+      position: absolute;
+      top: 80%;
+      left: 90%;
+      transform: rotate(90deg);
+    }
+
+    .cup2 {
+      width: 10%;
+      position: absolute;
+      top: 20%;
+      left: 30%;
+    }
+
+    .leave {
+      width: 10%;
+      position: absolute;
+      top: 0%;
+      left: 70%;
+    }
+
+    .potcopy1 {
+      width: 15%;
+      position: absolute;
+      top: 5%;
+      left: -5%;
+    }
+
+    .pot {
+      width: 15%;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+    }
+
+    @keyframes back {
+      0% {
+        transform: rotate(0);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .back1 {
+      animation: back;
+      animation-duration: 60s;
+      animation-timing-function: cubic-bezier(0.83, 0, 0.17, 1);
+      animation-fill-mode: both;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+    }
+
+    .back2 {
+      animation: back;
+      animation-duration: 60s;
+      animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+      animation-fill-mode: both;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+    }
+
+    .back3 {
+      animation: back;
+      animation-duration: 60s;
+      animation-timing-function: cubic-bezier(0.6, 0.5, 0.3, 0.5);
+      animation-fill-mode: both;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+    }
+  </style>
+
+</head>
+
+
+<body>
+  <div id="clock">
+
+    <div class="container1">
+      <div class="heart"></div>
+      <div class="heartbottom"></div>
+
+      <div class="container2">
+        <div class="plum"></div>
+        <div class="plumbottom"></div>
+      </div>
+
+    </div>
+
+    <ol>
+      <li class="center-top">XII</li>
+      <li class="left-center right">III</li>
+      <li class="center-top bottom">VI</li>
+      <li class="left-center ">IX</li>
+    </ol>
+
+
+    <div id="hour"></div>
+    <div id="min"></div>
+    <div id="sec"></div>
+    <img src="./rabbitsit.gif" alt="" class="rabbit rabbitmove">
+  </div>
+
+
+  <!-- <span><img src="./1200px-Playing_card_heart_A.svg_.png" alt="" class="pokercard"></span> -->
+
+  <span class="box">
+    <img src="./花花.png" alt="" class="flower back3">
+    <img src="./花花.png" alt="" class="flowercopy1 back2">
+    <img src="./花花.png" alt="" class="flowercopy2 back2">
+    <img src="./花花.png" alt="" class="flowercopy3 back2">
+    <img src="./杯子.png" alt="" class="cup1 back1">
+    <img src="./杯子2.png" alt="" class="cup2 back1">
+    <img src="./葉子.png" alt="" class="leave back2">
+    <img src="./壺.png" alt="" class="pot back1">
+    <img src="./壺.png" alt="" class="potcopy1 back3">
+  </span>
+
+  <span><img src="./ALICE.png" alt="" class="alice"></span>
+
+  <script>
+    const elHour = document.getElementById("hour")
+    const elMin = document.getElementById("min")
+    const elSec = document.getElementById("sec")
+
+    setInterval(() => {
+      const date = new Date()
+      elHour.style.transform = `rotate(${date.getHours() * 30 - 90}deg)`
+      // elHour.style.transform = `rotate(${date.getHours() * 6 - 90}deg)`
+      elMin.style.transform = `rotate(${date.getMinutes() * 6 - 90}deg)`
+      elSec.style.transform = `rotate(${date.getSeconds() * 6 - 90}deg)`
+    }, 1000)
+
+
+    // // 好像哪裡怪怪的
+    // setInterval(() => {
+    //   const date = new Date()
+    //   elHour.style.transform = `rotate(${date.getHours() * 6 - 90 + date.getMinutes() % 60 } deg)`
+    // }, 1000)
+
+
+
+  </script>
+</body>
+
+</html>
